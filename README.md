@@ -1,9 +1,9 @@
 # fibermodes
-Optical step-index fiber mode solver suitable for multi-layer circular core structures. 
+Optical step-index fiber mode solver suitable for multi-layer circular core structures. This is an updated and debugged version of the original repo cbrunet/fibermodes. 
 
 API documentation available on http://fibermodes.rtfd.org/
 
-This code can be used freely for non-profit scientific work. When using this code for any publication we'd be pleased if you could acknowledge: Behnam Pishnamazi, and Mario Chemnitz from the Smart Photonics group, Leibniz Institute of Photonic Technologies, Albert-Einstein-Str 9, 07745 Jena, Germany.
+This code can be used freely for non-profit scientific work. When using this code for any publication we'd be pleased if you could acknowledge: github.com/cbrunet and Behnam Pishnamazi and Mario Chemnitz from the Smart Photonics group, Leibniz Institute of Photonic Technologies Jena, Germany.
 
 Installation
 ============
@@ -14,10 +14,10 @@ Requirements:
 - numpy
 - scipy
 
-For GUI:
+For GUI (legacy, Python ≤ 3.5 only):  
 
- - PyQt4
- - pyqtgraph
+– PyQt4 (system package)  
+– pyqtgraph
 
 To run unit tests:
 
@@ -25,11 +25,16 @@ To run unit tests:
  - coverage (for coverage tests)
 
 
-This software is still under heavy development. Therefore, it is recommended to
+This software is still under development. Therefore, it is recommended to
 install it in a development environment, to be able to quickly pull newest changes
 from the GitHub repository, and to be able to propose pull requests. However,
-we also describe a *simple* installation, in case you only want to run  the 
+we also describe a *simple* installation, in case you only want to run the 
 software, without hacking it.
+
+Legacy GUI (optional)  
+----------------------
+
+The graphical user interface is considered legacy and is only supported on Python ≤ 3.5 with system‑provided PyQt4 and pyqtgraph. On newer Python versions, please use the library from the command line or in scripts/Jupyter notebooks without the GUI.
 
 
 Installing the required environment
@@ -46,20 +51,14 @@ On **Arch**, the required packages are:
 `python-coverage`, `python-pip`.
 
 
-### For Windows
+### For Windows / Mac
 
 I recommend to use a distribution that includes scientific Python.
-Choose a distribution that includes Python 3.4 or higher. I recommend
+Choose a distribution that includes Python 3.12 or higher. I recommend
 using either
 [WinPython](http://winpython.github.io/) or
 [Anaconda](https://www.continuum.io/downloads).
 Follow the installation instructions, and everything should work out-of-the-box.
-
-
-### For Mac OS
-
-I do not have a machine to test installation on Mac OS. However, it *should* work.
-Please fell free to share me your experience.
 
 
 *Simple* installation
@@ -68,10 +67,12 @@ Please fell free to share me your experience.
 This is not the recommended way. You should consider *development* installation
 instead. However, this is the simplest installation, as it does not require `git`.
 
-1. Download the [ZIP archive from GitHub](https://github.com/Smart-Photonics-IPHT/07_Fiber_Mode_Solver_2.0).
+1. Download the [ZIP archive from GitHub](https://github.com/Smart-Photonics-IPHT/Fiber-Mode-Solver).
 2. Unzip it!
-3. On a command line, go inside the `fibermodes` directory.
+3. Open a terminal and change into the `fibermodes` directory.
 4. Run `python setup.py install`
+   or install the package with `pip install .`
+   or directly from GitHub: pip install "git+https://github.com/Smart-Photonics-IPHT/Fiber-Mode-Solve.git"  
 
 The command on line 4 may vary.
 For instance, it should be `sudo python3 setup.py install` on Ubuntu / Debian.
@@ -91,9 +92,14 @@ Then you should configure you machine with ssh keys, and configure your name
 and email for git.
 
 The third step is to fork and clone the
-[fibermodes repository](https://github.com/Smart-Photonics-IPHT/07_Fiber_Mode_Solver_2.0).
+[fibermodes repository](https://github.com/Smart-Photonics-IPHT/Fiber-Mode-Solver).
 I recommend forking it first, as it will allow you to commit your changes
 on GitHub, and to suggest pull requests.
+
+After cloning the repository and changing into the `fibermodes` directory, install in editable (development) mode:
+`pip install -e .`
+This links the source tree into your environment, so you do not need to reinstall after pulling new changes.
+
 
 Then you should install the software in `develop` mode. This is similar
 to `install`, but it uses links instead of moving the files. Therefore, you
