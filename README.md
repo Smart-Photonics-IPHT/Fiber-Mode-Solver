@@ -75,7 +75,7 @@ instead. However, this is the simplest installation, as it does not require `git
 4. Run `python setup.py install`
    or install the package with `pip install .`
 
-Or directly from GitHub: `pip install "git+https://github.com/Smart-Photonics-IPHT/Fiber-Mode-Solve.git"`
+Or directly from GitHub: `pip install "git+https://github.com/Smart-Photonics-IPHT/Fiber-Mode-Solver.git"`
 
 The command on line 4 may vary.
 For instance, it should be `sudo python3 setup.py install` on Ubuntu / Debian.
