@@ -1,11 +1,12 @@
 # fibermodes
-Optical step-index fiber mode solver suitable for multi-layer circular core structures. This is an updated and debugged version of the original repo cbrunet/fibermodes. 
 
-API documentation available on http://fibermodes.rtfd.org/
+This is an updated and debugged version of the infamous fibermodes 0.2.0 package by CBrunet (original repo cbrunet/fibermodes). It contains an optical step-index fiber mode solver suitable for multi-layer circular core structures. This version contains bug fixes in the mode listings (includes even and odd modes now) and vector field definitions.
 
 Example notebooks available in the repository under [examples/](https://github.com/Smart-Photonics-IPHT/Fiber-Mode-Solver/tree/master/examples)
 
-This code can be used freely for non-profit scientific work. When using this code for any publication we'd be pleased if you could acknowledge: github.com/cbrunet and Behnam Pishnamazi and Mario Chemnitz from the Smart Photonics group, Leibniz Institute of Photonic Technologies Jena, Germany.
+The original API documentation is still available on http://fibermodes.rtfd.org/
+
+This code can be used freely for non-profit scientific work. When using this code for any publication we'd be pleased if you could acknowledge: github.com/cbrunet; Behnam Pishnamazi and Mario Chemnitz from the Smart Photonics group, Leibniz Institute of Photonic Technologies Jena, Germany.
 
 Installation
 ============
