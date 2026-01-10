@@ -3,7 +3,7 @@ Optical step-index fiber mode solver suitable for multi-layer circular core stru
 
 API documentation available on http://fibermodes.rtfd.org/
 
-Example notebooks available in the repository under [examples/](`https://github.com/Smart-Photonics-IPHT/Fiber-Mode-Solver/tree/master/examples)
+Example notebooks available in the repository under [examples/](https://github.com/Smart-Photonics-IPHT/Fiber-Mode-Solver/tree/master/examples)
 
 This code can be used freely for non-profit scientific work. When using this code for any publication we'd be pleased if you could acknowledge: github.com/cbrunet and Behnam Pishnamazi and Mario Chemnitz from the Smart Photonics group, Leibniz Institute of Photonic Technologies Jena, Germany.
 
