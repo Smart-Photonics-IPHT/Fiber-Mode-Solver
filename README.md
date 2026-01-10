@@ -2,6 +2,7 @@
 Optical step-index fiber mode solver suitable for multi-layer circular core structures. This is an updated and debugged version of the original repo cbrunet/fibermodes. 
 
 API documentation available on http://fibermodes.rtfd.org/
+Example notebooks available in the repository under `examples/`
 
 This code can be used freely for non-profit scientific work. When using this code for any publication we'd be pleased if you could acknowledge: github.com/cbrunet and Behnam Pishnamazi and Mario Chemnitz from the Smart Photonics group, Leibniz Institute of Photonic Technologies Jena, Germany.
 
@@ -23,7 +24,6 @@ To run unit tests:
 
  - nose
  - coverage (for coverage tests)
-
 
 This software is still under development. Therefore, it is recommended to
 install it in a development environment, to be able to quickly pull newest changes
@@ -116,6 +116,10 @@ To ensure you have all the required dependencies to run tests, you can
 do, from the `fibermodes` directory: `pip install .[test]`.
 
 Then, you can either run `nosetests` or `python setup.py nosetests`.
+
+After installing the package, you can test the solver and see typical usage in the example notebook:
+– Open `examples/fibermodes, code, new version.ipynb` in Jupyter (e.g. on your JupyterHub or local JupyterLab).  
+– Run the notebook cells to verify that the installation works and to see example mode‑solving workflows.
 
 
 Building documentation
