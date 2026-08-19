@@ -293,19 +293,38 @@ class Field(object):
                               numpy.square(self.Ephi(phi, theta)) +
                               numpy.square(self.Ez(phi, theta)))
 
-    def betaz(self, phi=0, theta=0):
-        z = 10e6
-        k = 6.28 / self.wl
+    def betaz(self, z=10e6, phi=0, theta=0):
+        """Propagation phase (beta * z) accumulated over a distance z.
+
+        Args:
+            z: propagation length (in the same length unit as the fiber
+                geometry / wavelength), defaults to the historical 10e6.
+            phi: phase (in radians)
+            theta: orientation (in radians)
+
+        Return:
+            beta * z (float)
+
+        """
+        k = 2 * np.pi / self.wl
         neff = self.fiber.neff(self.mode, self.wl)
         betaz = neff * k * z
         return betaz
 
+    def betaz0(self, z=10e6, phi=0, theta=0, Neff_min=0):
+        """Same as betaz, but using a caller-supplied effective index.
 
-        beta_z = k * neff * z
-        return beta_z
-    def betaz0(self, phi=0, theta=0, Neff_min=0):
-        z = 10e6
-        k = 6.28 / self.wl
+        Args:
+            z: propagation length, defaults to the historical 10e6.
+            phi: phase (in radians)
+            theta: orientation (in radians)
+            Neff_min: effective index to use instead of self.fiber.neff(...)
+
+        Return:
+            beta * z (float)
+
+        """
+        k = 2 * np.pi / self.wl
         neff = Neff_min
         betaz0 = k * neff * z
         return betaz0
@@ -344,24 +363,45 @@ class Field(object):
         F2 = ((v / (u * w)) ** 2) * (nu / (b1 + b2))
         return F2
 
-    def eprop(self, phi=0, theta=0):
-            z = 816508.13
-            k = 6.28 / self.wl
-            phase = np.random.uniform(0, 2 * np.pi)
-            exponent = (k ** 2) * (1.50 ** 2) * self._f1()
-            dexponent = self._f2()
-            beta = exponent / dexponent
-            beta = np.abs(beta)
-            beta = np.sqrt(beta)
-            #bz = beta * z
-            return self.Et(phi, theta) * np.exp(1j * beta * z)
+    def eprop(self, z=816508.13, phi=0, theta=0):
+        """Transverse E field propagated over a distance z.
 
-    def eprop2(self, phi=0, theta=0):
-            z = 4
-            k = 2*np.pi / self.wl
-            neff = self.fiber.neff(self.mode, self.wl)
-            beta = neff * k
-            return self.Et2(phi, theta) * np.exp(1j * beta * z)
+        Args:
+            z: propagation length (in the same length unit as the fiber
+                geometry / wavelength), defaults to the historical
+                816508.13.
+            phi: phase (in radians)
+            theta: orientation (in radians)
+
+        Return:
+            (np x np) numpy array
+
+        """
+        k = 2 * np.pi / self.wl
+        exponent = (k ** 2) * (1.50 ** 2) * self._f1()
+        dexponent = self._f2()
+        beta = exponent / dexponent
+        beta = np.abs(beta)
+        beta = np.sqrt(beta)
+        return self.Et(phi, theta) * np.exp(1j * beta * z)
+
+    def eprop2(self, z=4, phi=0, theta=0):
+        """Transverse E field (alternate definition) propagated over a
+        distance z.
+
+        Args:
+            z: propagation length, defaults to the historical 4.
+            phi: phase (in radians)
+            theta: orientation (in radians)
+
+        Return:
+            (np x np) numpy array
+
+        """
+        k = 2 * np.pi / self.wl
+        neff = self.fiber.neff(self.mode, self.wl)
+        beta = neff * k
+        return self.Et2(phi, theta) * np.exp(1j * beta * z)
 
 
 
