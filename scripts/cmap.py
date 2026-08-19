@@ -3,7 +3,7 @@ from matplotlib import pyplot
 import numpy
 
 from fibermodes import Wavelength, Mode, ModeFamily, HE11
-from fibermodes.material import Silica, SiO2GeO2
+from fibermodes.fiber.material import Silica, SiO2GeO2
 from fibermodes.fiber.ssif import SSIF
 from fibermodes.simulator import PSimulator as Simulator
 from fibermodes import constants

@@ -1,8 +1,8 @@
 
 from fibermodes import Wavelength, ModeFamily, Mode
-from fibermodes.material import Silica, SiO2GeO2
-# from fibermodes.material.sio2geo2cm import SiO2GeO2
-# from fibermodes.material import Fixed
+from fibermodes.fiber.material import Silica, SiO2GeO2
+# from fibermodes.fiber.material.sio2geo2cm import SiO2GeO2
+# from fibermodes.fiber.material import Fixed
 from fibermodes.simulator import PSimulator as Simulator
 import numpy
 from operator import mul

@@ -1,5 +1,5 @@
 
-from fibermodes.material import Silica, SiO2GeO2
+from fibermodes.fiber.material import Silica, SiO2GeO2
 from fibermodes.simulator import PSimulator as Simulator
 from fibermodes import constants
 import numpy

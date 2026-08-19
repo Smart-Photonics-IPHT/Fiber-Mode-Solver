@@ -1,7 +1,7 @@
 
 import numpy
 from matplotlib import pyplot
-from fibermodes.material import Fixed
+from fibermodes.fiber.material import Fixed
 from fibermodes.simulator import PSimulator as Simulator
 from scipy.special import j0, j1, jn, y0, y1, yn
 

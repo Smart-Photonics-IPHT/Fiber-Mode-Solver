@@ -5,7 +5,7 @@ from matplotlib import pyplot
 
 from fibermodes.simulator import PSimulator as Simulator
 from fibermodes import Wavelength, Mode, fixedFiber, ModeFamily
-from fibermodes.material import Air, Silica, Fixed
+from fibermodes.fiber.material import Air, Silica, Fixed
 
 
 COLORS = {ModeFamily.HE: 'b',

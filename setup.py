@@ -26,7 +26,7 @@ setup(
     url='https://github.com/Smart-Photonics-IPHT/07_Fiber_Mode_Solver_2.0',
     packages=find_packages(exclude=['plots', 'scripts', 'tests']),
     include_package_data=True,
-    python_requires='>=3.4',
+    python_requires='>=3.12',
     entry_points={
         'gui_scripts': [
             'fibereditor=fibermodesgui.fibereditorapp:main',
@@ -44,18 +44,24 @@ setup(
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Natural Language :: English',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.12',
         'Topic :: Scientific/Engineering :: Physics'
     ],
     install_requires=[
         'numpy>=1.9.0',
         'scipy>=0.15.0',
-        'pyqtgraph>=0.9.10',
+        'packaging',
     ],
     extras_require={
+        # Legacy GUI (fibereditor / materialcalculator / modesolver /
+        # wavelengthcalculator). Only supported on Python <= 3.5 with a
+        # system-provided PyQt4, which is not installable via pip on
+        # modern Python. Not installed by default; see README.
+        'gui': [
+            'pyqtgraph>=0.9.10',
+        ],
         'test': [
-            'nose>=1.3.2',
+            'pytest>=7',
             'coverage>=3.7'
         ]
     }
