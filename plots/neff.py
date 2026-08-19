@@ -1,6 +1,6 @@
 
 from fibermodes import Wavelength, Mode, constants
-from fibermodes.material import Silica, SiO2GeO2, Fixed
+from fibermodes.fiber.material import Silica, SiO2GeO2, Fixed
 from fibermodes.simulator import PSimulator as Simulator
 import numpy
 from matplotlib import pyplot

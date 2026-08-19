@@ -1,5 +1,5 @@
 from fibermodes import Wavelength, Mode, fixedFiber, ModeFamily
-from fibermodes.material import Fixed
+from fibermodes.fiber.material import Fixed
 from fibermodes.simulator import PSimulator as Simulator
 import numpy
 from matplotlib import pyplot
