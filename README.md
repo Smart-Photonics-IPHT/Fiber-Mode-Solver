@@ -16,16 +16,19 @@ Requirements:
 - Python >= 3.12
 - numpy
 - scipy
+- packaging
 
-For GUI (legacy, Python ≤ 3.5 only):  
+For GUI (legacy, Python ≤ 3.5 only, not installed by default):
 
-– PyQt4 (system package)  
-– pyqtgraph
+– PyQt4 (system package)
+– pyqtgraph (`pip install .[gui]`)
 
 To run unit tests:
 
- - nose
+ - pytest
  - coverage (for coverage tests)
+
+ Install both with `pip install .[test]`.
 
 This software is still under development. Therefore, it is recommended to
 install it in a development environment, to be able to quickly pull newest changes
@@ -45,12 +48,12 @@ Installing the required environment
 ### For Linux
 
 On **Ubuntu** / **Debian**, install the following packages:
-`python3`, `python3-numpy`, `python3-scipy`, `python3-pyqt4`, `python3-pyqtgraph`,
-`python3-nose`, `python3-coverage`.
+`python3`, `python3-numpy`, `python3-scipy`, `python3-pip`.
+The legacy GUI additionally needs `python3-pyqt4`, `python3-pyqtgraph` (Python ≤ 3.5 only, see below).
 
 On **Arch**, the required packages are:
-`python`, `python-numpy`, `python-scipy`, `python-pyqt4`, `python-nose`,
-`python-coverage`, `python-pip`.
+`python`, `python-numpy`, `python-scipy`, `python-pip`.
+The legacy GUI additionally needs `python-pyqt4` (Python ≤ 3.5 only, see below).
 
 
 ### For Windows / Mac
@@ -72,13 +75,11 @@ instead. However, this is the simplest installation, as it does not require `git
 1. Download the [ZIP archive from GitHub](https://github.com/Smart-Photonics-IPHT/Fiber-Mode-Solver).
 2. Unzip it!
 3. Open a terminal and change into the `fibermodes` directory.
-4. Run `python setup.py install`
-   or install the package with `pip install .`
+4. Install the package with `pip install .`
 
 Or directly from GitHub: `pip install "git+https://github.com/Smart-Photonics-IPHT/Fiber-Mode-Solver.git"`
 
-The command on line 4 may vary.
-For instance, it should be `sudo python3 setup.py install` on Ubuntu / Debian.
+If you need the legacy GUI (Python ≤ 3.5 only, see below), use `pip install .[gui]` instead.
 
 
 Development installation
@@ -103,13 +104,9 @@ After cloning the repository and changing into the `fibermodes` directory, insta
 `pip install -e .`
 This links the source tree into your environment, so you do not need to reinstall after pulling new changes.
 
-
-Then you should install the software in `develop` mode. This is similar
-to `install`, but it uses links instead of moving the files. Therefore, you
-do not need to reinstall each time you pull changes from GitHub.
-The command is: `python setup.py develop`. You may need to use `python3`
-instead of `python` if you are on Ubuntu / Debian, and you may need to use
-`sudo` to run this command.
+(The older `python setup.py develop` / `python setup.py install` invocations are no longer recommended:
+modern `pip` versions do not guarantee `setuptools` is preinstalled in a fresh virtual environment, and
+`pip install -e .` / `pip install .` work reliably without it.)
 
 
 Running tests
@@ -118,7 +115,7 @@ Running tests
 To ensure you have all the required dependencies to run tests, you can
 do, from the `fibermodes` directory: `pip install .[test]`.
 
-Then, you can either run `nosetests` or `python setup.py nosetests`.
+Then, run `pytest`.
 
 After installing the package, you can test the solver and see typical usage in the example notebook:
 – Open `examples/fibermodes, code, new version.ipynb` in Jupyter (e.g. on your JupyterHub or local JupyterLab).  
@@ -128,12 +125,14 @@ After installing the package, you can test the solver and see typical usage in t
 Building documentation
 ----------------------
 
-You need sphinx (and probably a few dependencies to be documented).
+You need sphinx (`pip install sphinx`) and probably a few dependencies to be documented.
 
 ``
-python setup.py build_sphinx
+sphinx-build doc doc/_build/html
 ``
 
 Documentation is generated under `doc/_build/html`.
+(The `python setup.py build_sphinx` command required a separate setuptools
+plugin and is no longer supported by current setuptools versions.)
 
 
