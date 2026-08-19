@@ -21,7 +21,7 @@
 
 import json
 import time
-from distutils.version import StrictVersion as Version
+from packaging.version import Version
 from operator import mul
 from functools import reduce
 from itertools import product, islice
