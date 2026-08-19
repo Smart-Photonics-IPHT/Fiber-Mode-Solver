@@ -124,6 +124,55 @@ class TestField(unittest.TestCase):
         aeff = self.field.Aeff()
         self.assertGreater(aeff, 0)
 
+    def testBetazAcceptsUserLength(self):
+        # betaz/betaz0 used to hard-code z=10e6 with no way to override it.
+        default = self.field.betaz()
+        custom = self.field.betaz(z=1)
+        self.assertNotEqual(default, custom)
+        # beta*z should scale linearly with z.
+        self.assertAlmostEqual(default / custom, 10e6 / 1)
+
+        default0 = self.field.betaz0(Neff_min=1.44)
+        custom0 = self.field.betaz0(z=1, Neff_min=1.44)
+        self.assertNotEqual(default0, custom0)
+        self.assertAlmostEqual(default0 / custom0, 10e6 / 1)
+
+    def testEprop2AcceptsUserLength(self):
+        # eprop2 used to hard-code z=4 with no way to override it.
+        default = self.field.eprop2()
+        custom = self.field.eprop2(z=100)
+        self.assertFalse(numpy.allclose(default, custom))
+        # With z=0 there is no propagation, so the result should match
+        # the un-propagated transverse field.
+        zero = self.field.eprop2(z=0)
+        self.assertTrue(numpy.allclose(zero, self.field.Et2()))
+
+    def testEpropAcceptsUserLength(self):
+        # eprop used to hard-code z=816508.13 with no way to override it.
+        #
+        # This does NOT use self.field (smf28.fiber): eprop's internal
+        # _f1/_f2 helpers hard-code a core/cladding index pair of
+        # 1.50/1.45 and return NaN whenever a fiber's real effective
+        # index falls outside that assumed range -- which is the case
+        # for smf28 (core 1.4489 / cladding 1.4444). That is a separate,
+        # pre-existing bug in _f1/_f2, filed separately; using it here
+        # would make this test unable to tell "z is respected" apart
+        # from "the whole computation is NaN". Instead we build a fiber
+        # whose indices fall inside the range _f1/_f2 assume.
+        f = FiberFactory()
+        f.addLayer(radius=4e-6, index=1.48)
+        f.addLayer(index=1.46)
+        fiber = f[0]
+        field = Field(fiber, HE11, 1550e-9, 10e-6, np=11)
+
+        default = field.eprop()
+        explicit_same = field.eprop(z=816508.13)
+        custom = field.eprop(z=1)
+
+        self.assertFalse(numpy.isnan(default).any())
+        self.assertTrue(numpy.allclose(default, explicit_same))
+        self.assertFalse(numpy.allclose(default, custom))
+
 
 if __name__ == "__main__":
     unittest.main()
